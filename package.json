@@ -9,10 +9,24 @@
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config config/webpack.config.prod.js",
     "prod": "npm run build",
     "serve:wallpaper": "node scripts/serve-wallpaper.mjs build 5057",
-    "verify:wallpaper": "node scripts/verify-wallpaper.mjs"
+    "verify:wallpaper": "node scripts/verify-wallpaper.mjs",
+    "verify:wallpaper:matrix": "npm run verify:wallpaper && cross-env CHROME_WINDOW_SIZE=1920,1080 npm run verify:wallpaper && cross-env CHROME_WINDOW_SIZE=2560,1080 npm run verify:wallpaper"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "wallpaper-engine",
+    "html5-canvas",
+    "retro-game",
+    "web-wallpaper"
+  ],
+  "author": "FluffyBacon678",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FluffyBacon678/DuckHunt-Wallpaper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FluffyBacon678/DuckHunt-Wallpaper/issues"
+  },
+  "homepage": "https://github.com/FluffyBacon678/DuckHunt-Wallpaper#readme",
   "license": "ISC",
   "browserslist": "> 0.3%, not IE 11",
   "devDependencies": {

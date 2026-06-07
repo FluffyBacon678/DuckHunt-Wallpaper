@@ -6,9 +6,12 @@ import WebSocket from 'ws';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const url = process.argv[2] || 'http://127.0.0.1:5057/index.html';
+const url = process.argv[2] || process.env.VERIFY_URL || 'http://127.0.0.1:5057/index.html';
 const chromePath = process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const debugPort = Number(process.env.CHROME_DEBUG_PORT || 9223);
+const windowSize = process.env.CHROME_WINDOW_SIZE || '1280,720';
+const artifactPrefix = process.env.VERIFY_ARTIFACT_PREFIX || 'pond-patrol-wallpaper';
+const windowSlug = windowSize.replace(/[^0-9]+/g, 'x').replace(/^x|x$/g, '');
 const userDataDir = path.join(root, '.tmp-chrome-wallpaper');
 const artifactsDir = path.join(root, 'artifacts');
 
@@ -101,7 +104,7 @@ async function waitForState(client, predicate, label) {
     lastState = await evaluate(client, `(() => {
       const canvas = document.querySelector('#canvas');
       const rect = canvas ? canvas.getBoundingClientRect() : null;
-      const wallpaper = window.duckHuntWallpaper;
+      const wallpaper = window.pondPatrolWallpaper || window.duckHuntWallpaper;
       return {
         audioCount: document.querySelectorAll('audio').length,
         bodyDataset: { ...document.body.dataset },
@@ -133,6 +136,13 @@ async function saveScreenshot(client, fileName) {
   return filePath;
 }
 
+function wallpaperExpression(expression) {
+  return `(() => {
+    const wallpaper = window.pondPatrolWallpaper || window.duckHuntWallpaper;
+    ${expression}
+  })()`;
+}
+
 await mkdir(artifactsDir, { recursive: true });
 await rm(userDataDir, { recursive: true, force: true });
 
@@ -145,7 +155,7 @@ const chrome = spawn(chromePath, [
   '--disable-gpu',
   '--hide-scrollbars',
   '--no-first-run',
-  '--window-size=1280,720',
+  `--window-size=${windowSize}`,
   url,
 ], {
   stdio: 'ignore',
@@ -162,7 +172,7 @@ try {
 
   const menuState = await waitForState(client, state => state.ready && !state.loadingVisible, 'ready menu');
   await wait(700);
-  const menuScreenshot = await saveScreenshot(client, 'duck-hunt-wallpaper-menu.png');
+  const menuScreenshot = await saveScreenshot(client, `${artifactPrefix}-${windowSlug}-menu.png`);
 
   const clickX = menuState.canvasRect.x + menuState.canvasRect.width * (384 / 768);
   const clickY = menuState.canvasRect.y + menuState.canvasRect.height * (460 / 720);
@@ -174,8 +184,8 @@ try {
         button: event.button,
         clientX: event.clientX,
         clientY: event.clientY,
-        mouseX: window.duckHuntWallpaper.game.input.mouseX,
-        mouseY: window.duckHuntWallpaper.game.input.mouseY
+        mouseX: (window.pondPatrolWallpaper || window.duckHuntWallpaper).game.input.mouseX,
+        mouseY: (window.pondPatrolWallpaper || window.duckHuntWallpaper).game.input.mouseY
       });
     }, true);
   })()`);
@@ -209,10 +219,10 @@ try {
   });
 
   await wait(300);
-  let clickDebug = await evaluate(client, `(() => ({
+  let clickDebug = await evaluate(client, wallpaperExpression(`return {
     clicks: window.__verifyClicks || [],
-    gameState: window.duckHuntWallpaper.game.gamestate
-  }))()`);
+    gameState: wallpaper.game.gamestate
+  };`));
 
   if (clickDebug.gameState !== 1) {
     await evaluate(client, `(() => {
@@ -226,17 +236,17 @@ try {
       }));
     })()`);
     await wait(300);
-    clickDebug = await evaluate(client, `(() => ({
+    clickDebug = await evaluate(client, wallpaperExpression(`return {
       clicks: window.__verifyClicks || [],
-      gameState: window.duckHuntWallpaper.game.gamestate,
+      gameState: wallpaper.game.gamestate,
       usedSyntheticFallback: true
-    }))()`);
+    };`));
   }
 
   const runningState = await waitForState(client, state => state.gameState === 1, 'running game state');
-  const gameScreenshot = await saveScreenshot(client, 'duck-hunt-wallpaper-game.png');
+  const gameScreenshot = await saveScreenshot(client, `${artifactPrefix}-${windowSlug}-game.png`);
 
-  const propertyState = await evaluate(client, `(() => {
+  const propertyState = await evaluate(client, wallpaperExpression(`
     window.wallpaperPropertyListener.applyUserProperties({
       duckspeed: { value: 1.5 },
       fitmode: { value: 'cover' },
@@ -249,14 +259,14 @@ try {
       bodyDataset: { ...document.body.dataset },
       controlsHidden: document.querySelector('.volume')?.classList.contains('hidden') || false,
       settings: {
-        duckSpeedMultiplier: window.duckHuntWallpaper.settings.duckSpeedMultiplier,
-        showControls: window.duckHuntWallpaper.settings.showControls,
-        showCursor: window.duckHuntWallpaper.settings.showCursor,
-        showHud: window.duckHuntWallpaper.settings.showHud,
-        volume: window.duckHuntWallpaper.settings.volume
+        duckSpeedMultiplier: wallpaper.settings.duckSpeedMultiplier,
+        showControls: wallpaper.settings.showControls,
+        showCursor: wallpaper.settings.showCursor,
+        showHud: wallpaper.settings.showHud,
+        volume: wallpaper.settings.volume
       }
     };
-  })()`);
+  `));
 
   console.log(JSON.stringify({
     gameScreenshot,
@@ -265,6 +275,8 @@ try {
     menuState,
     propertyState,
     runningState,
+    url,
+    windowSize,
   }, null, 2));
 } finally {
   if (client) client.close();

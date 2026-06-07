@@ -31,7 +31,7 @@ In Wallpaper Engine:
   - Show or hide cursor
   - Enable or disable mouse interaction
   - Autostart game
-  - Duck speed
+  - Bird speed
 - Wallpaper Engine pause/resume and FPS property hooks.
 - Local preview and automated QA scripts.
 
@@ -67,12 +67,25 @@ Run automated verification:
 npm.cmd run verify:wallpaper
 ```
 
+Run the viewport QA matrix:
+
+```powershell
+npm.cmd run verify:wallpaper:matrix
+```
+
 The verifier saves screenshots to `artifacts/` and checks:
 
 - menu loads
 - canvas scales correctly
 - START click enters the running game state
 - Wallpaper Engine-style user properties apply correctly
+
+## Asset Provenance
+
+See `ASSET_MANIFEST.md` for the full asset provenance. In short, the project art,
+preview, sprites, UI images, favicon, and sound effects are original/generated
+assets for Pond Patrol. Font packages are bundled locally through npm and retain
+their upstream licenses.
 
 ## Publishing Note
 

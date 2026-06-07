@@ -18,9 +18,20 @@ export default class GameStats {
 
     }
 
+    getStorageKeys() {
+        return {
+            current: 'pondPatrolWallpaperBestScore',
+            legacy: 'duckHuntWallpaperBestScore',
+        };
+    }
+
     getBestScore() {
         try {
-            let savedScore = parseInt(window.localStorage.getItem('duckHuntWallpaperBestScore'), 10);
+            let keys = this.getStorageKeys();
+            let savedScore = parseInt(window.localStorage.getItem(keys.current), 10);
+            if (!Number.isFinite(savedScore)) {
+                savedScore = parseInt(window.localStorage.getItem(keys.legacy), 10);
+            }
             return Number.isFinite(savedScore) ? savedScore : 0;
         } catch (error) {
             return 0;
@@ -109,7 +120,7 @@ export default class GameStats {
         if (this.score > this.bestScore) {
             this.bestScore = this.score;
             try {
-                window.localStorage.setItem('duckHuntWallpaperBestScore', this.bestScore);
+                window.localStorage.setItem(this.getStorageKeys().current, this.bestScore);
             } catch (error) {}
         }
     }

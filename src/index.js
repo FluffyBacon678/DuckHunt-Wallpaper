@@ -112,11 +112,12 @@ function startGame() {
         game.startFromMenu();
     }
 
-    window.duckHuntWallpaper = {
+    window.pondPatrolWallpaper = {
         applyWallpaperSettings,
         game,
         settings: wallpaperSettings,
     };
+    window.duckHuntWallpaper = window.pondPatrolWallpaper;
 
     let lastTime = 0;
     let frameAccumulator = 0;

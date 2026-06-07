@@ -82,7 +82,7 @@
         "min": 0.5,
         "order": 108,
         "precision": 2,
-        "text": "Duck speed",
+        "text": "Bird speed",
         "type": "slider",
         "value": 1
       }
