@@ -1,0 +1,98 @@
+{
+  "description": "A retro light-gun-inspired web wallpaper with mouse-playable canvas gameplay, responsive desktop scaling, and Wallpaper Engine customization controls.",
+  "file": "index.html",
+  "general": {
+    "properties": {
+      "volume": {
+        "index": 0,
+        "max": 100,
+        "min": 0,
+        "order": 100,
+        "text": "Volume",
+        "type": "slider",
+        "value": 5
+      },
+      "muted": {
+        "index": 1,
+        "order": 101,
+        "text": "Muted",
+        "type": "bool",
+        "value": false
+      },
+      "fitmode": {
+        "index": 2,
+        "options": [
+          {
+            "label": "Contain",
+            "value": "contain"
+          },
+          {
+            "label": "Cover",
+            "value": "cover"
+          },
+          {
+            "label": "Stretch",
+            "value": "stretch"
+          }
+        ],
+        "order": 102,
+        "text": "Fit mode",
+        "type": "combo",
+        "value": "contain"
+      },
+      "showhud": {
+        "index": 3,
+        "order": 103,
+        "text": "Show HUD",
+        "type": "bool",
+        "value": true
+      },
+      "showcontrols": {
+        "index": 4,
+        "order": 104,
+        "text": "Show volume controls",
+        "type": "bool",
+        "value": true
+      },
+      "showcursor": {
+        "index": 5,
+        "order": 105,
+        "text": "Show crosshair cursor",
+        "type": "bool",
+        "value": true
+      },
+      "interactive": {
+        "index": 6,
+        "order": 106,
+        "text": "Enable mouse interaction",
+        "type": "bool",
+        "value": true
+      },
+      "autostart": {
+        "index": 7,
+        "order": 107,
+        "text": "Autostart game",
+        "type": "bool",
+        "value": false
+      },
+      "duckspeed": {
+        "fraction": true,
+        "index": 8,
+        "max": 2.5,
+        "min": 0.5,
+        "order": 108,
+        "precision": 2,
+        "text": "Duck speed",
+        "type": "slider",
+        "value": 1
+      }
+    }
+  },
+  "preview": "preview.jpg",
+  "tags": [
+    "Game"
+  ],
+  "title": "Duck Hunt Wallpaper",
+  "type": "web",
+  "visibility": "private"
+}

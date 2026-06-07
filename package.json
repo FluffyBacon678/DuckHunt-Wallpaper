@@ -1,0 +1,43 @@
+{
+  "name": "duck-hunt-wallpaper",
+  "version": "1.0.0",
+  "description": "Duck Hunt style web wallpaper for Wallpaper Engine.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --config config/webpack.config.js --host 127.0.0.1",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config config/webpack.config.prod.js",
+    "prod": "npm run build",
+    "serve:wallpaper": "node scripts/serve-wallpaper.mjs build 5057",
+    "verify:wallpaper": "node scripts/verify-wallpaper.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": "> 0.3%, not IE 11",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.1.1",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "cross-env": "^7.0.3",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^4.0.1",
+    "sass": "^1.69.7",
+    "sass-loader": "^10.0.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "@fontsource/press-start-2p": "^5.0.18",
+    "@fontsource/teko": "^5.0.18"
+  }
+}

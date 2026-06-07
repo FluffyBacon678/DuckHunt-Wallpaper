@@ -1,0 +1,8 @@
+node_modules/
+.tmp-chrome-wallpaper/
+artifacts/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
