@@ -1,5 +1,5 @@
 {
-  "description": "A retro light-gun-inspired web wallpaper with mouse-playable canvas gameplay, responsive desktop scaling, and Wallpaper Engine customization controls.",
+  "description": "An original retro pond target-shooter web wallpaper with mouse-playable canvas gameplay, responsive desktop scaling, and Wallpaper Engine customization controls.",
   "file": "index.html",
   "general": {
     "properties": {
@@ -92,7 +92,7 @@
   "tags": [
     "Game"
   ],
-  "title": "Duck Hunt Wallpaper",
+  "title": "Pond Patrol Wallpaper",
   "type": "web",
-  "visibility": "private"
+  "visibility": "public"
 }

@@ -1,9 +1,10 @@
 {
-  "name": "duck-hunt-wallpaper",
+  "name": "pond-patrol-wallpaper",
   "version": "1.0.0",
-  "description": "Duck Hunt style web wallpaper for Wallpaper Engine.",
+  "description": "Original retro target-shooter web wallpaper for Wallpaper Engine.",
   "main": "index.js",
   "scripts": {
+    "assets:original": "node scripts/generate-original-assets.mjs",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --config config/webpack.config.js --host 127.0.0.1",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config config/webpack.config.prod.js",
     "prod": "npm run build",

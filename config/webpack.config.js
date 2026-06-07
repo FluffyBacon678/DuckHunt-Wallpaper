@@ -79,7 +79,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "src/templates/template.html",
-      title: "Duck Hunt"
+      title: "Pond Patrol"
     }),
   ]
 }

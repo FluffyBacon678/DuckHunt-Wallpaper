@@ -30,7 +30,7 @@ export default class Display {
             this.gameHeight * 0.1
         );
 
-        this.ctx.fillText('START GAME', this.gameWidth / 2, this.gameHeight * 0.66);
+        this.ctx.fillText('START PATROL', this.gameWidth / 2, this.gameHeight * 0.66);
         this.ctx.font = "20px 'Press Start 2P'";
 
 
@@ -38,7 +38,7 @@ export default class Display {
         this.ctx.fillText(`BEST SCORE  =  ${this.game.gameStats.bestScore}`, this.gameWidth / 2, this.gameHeight * 0.8);
 
         this.ctx.fillStyle = 'white';
-        this.ctx.fillText('(c) 2020 Adi52', this.gameWidth / 2, this.gameHeight * 0.86);
+        this.ctx.fillText('(c) 2026 FLUFFYB', this.gameWidth / 2, this.gameHeight * 0.86);
     }
 
     drawBigButton(string1, string2) {
@@ -135,7 +135,7 @@ export default class Display {
     }
 
     flyAwayButton() {
-        this.drawSmallButton('FLY AWAY');
+        this.drawSmallButton('ESCAPED');
     }
 
     gameOverButton() {

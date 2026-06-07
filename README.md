@@ -1,6 +1,6 @@
-# DuckHunt-Wallpaper
+# Pond Patrol Wallpaper
 
-A retro light-gun-inspired Duck Hunt style web wallpaper for Wallpaper Engine.
+An original retro pond target-shooter web wallpaper for Wallpaper Engine.
 
 ![Wallpaper preview](build/preview.jpg)
 
@@ -18,6 +18,7 @@ In Wallpaper Engine:
 ## Features
 
 - Mouse-playable HTML5 Canvas game.
+- Original generated pixel-art sprites, background, UI assets, and synthesized sound effects.
 - Responsive desktop scaling with `contain`, `cover`, and `stretch` fit modes.
 - Correct click targeting after canvas scaling.
 - Local fonts and local assets, with no runtime web dependencies.
@@ -48,6 +49,12 @@ Build the Wallpaper Engine bundle:
 npm.cmd run build
 ```
 
+Regenerate the original project assets:
+
+```powershell
+npm.cmd run assets:original
+```
+
 Serve the built wallpaper locally:
 
 ```powershell
@@ -69,6 +76,6 @@ The verifier saves screenshots to `artifacts/` and checks:
 
 ## Publishing Note
 
-This project began as a browser recreation inspired by Nintendo's Duck Hunt. Before publishing to Steam Workshop or another public marketplace, replace any Nintendo-derived art, logo, character, and audio assets with original assets.
+The current bundled art and sound effects are procedurally generated for this project. The gameplay is a retro target-shooter homage and is not affiliated with any classic console publisher.
 
-The current repo is configured with `"visibility": "private"` in `project.json` as a reminder until the asset pass is complete.
+Do not use third-party names, logos, characters, or audio when publishing to Steam Workshop or another public marketplace.
