@@ -9,6 +9,7 @@
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config config/webpack.config.prod.js",
     "prod": "npm run build",
     "serve:wallpaper": "node scripts/serve-wallpaper.mjs build 5057",
+    "verify:all": "node scripts/verify-all.mjs",
     "verify:bundle": "node scripts/verify-bundle.mjs",
     "verify:wallpaper": "node scripts/verify-wallpaper.mjs",
     "verify:wallpaper:matrix": "npm run verify:wallpaper && cross-env CHROME_WINDOW_SIZE=1920,1080 npm run verify:wallpaper && cross-env CHROME_WINDOW_SIZE=2560,1080 npm run verify:wallpaper"

@@ -1,0 +1,31 @@
+name: Verify Wallpaper Bundle
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Verify Bundle
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Wallpaper Engine bundle
+        run: npm run build
+
+      - name: Verify bundle integrity
+        run: npm run verify:bundle

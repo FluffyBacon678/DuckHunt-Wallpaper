@@ -64,6 +64,12 @@ npm.cmd run serve:wallpaper
 Run automated verification:
 
 ```powershell
+npm.cmd run verify:all
+```
+
+Or run the checks individually:
+
+```powershell
 npm.cmd run verify:bundle
 npm.cmd run verify:wallpaper
 ```
@@ -81,6 +87,8 @@ The verifier saves screenshots to `artifacts/` and checks:
 - canvas scales correctly
 - START click enters the running game state
 - Wallpaper Engine-style user properties apply correctly
+
+GitHub Actions also runs install, build, and bundle verification on pushes and pull requests.
 
 ## Asset Provenance
 
