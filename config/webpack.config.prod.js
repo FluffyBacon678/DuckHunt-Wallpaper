@@ -106,7 +106,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: "src/templates/template.html",
-            title: "nowa aplikacja",
+            title: "Pond Patrol",
             minify: {
                 collapseWhitespace: true
             }

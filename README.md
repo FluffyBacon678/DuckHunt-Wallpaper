@@ -49,6 +49,15 @@ Build the Wallpaper Engine bundle:
 npm.cmd run build
 ```
 
+Prepare a Steam Workshop upload package:
+
+```powershell
+npm.cmd run verify:release
+```
+
+The packaged ZIP is written to `dist/pond-patrol-wallpaper.zip`. See
+`docs/STEAM_WORKSHOP.md` for listing copy and the manual upload checklist.
+
 Regenerate the original project assets:
 
 ```powershell

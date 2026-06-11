@@ -29,3 +29,13 @@ jobs:
 
       - name: Verify bundle integrity
         run: npm run verify:bundle
+
+      - name: Package Wallpaper Engine bundle
+        run: npm run package:wallpaper
+
+      - name: Upload packaged wallpaper artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pond-patrol-wallpaper
+          path: dist/pond-patrol-wallpaper.zip
+          if-no-files-found: error
