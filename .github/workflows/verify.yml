@@ -33,6 +33,9 @@ jobs:
       - name: Package Wallpaper Engine bundle
         run: npm run package:wallpaper
 
+      - name: Verify packaged wallpaper archive
+        run: npm run verify:package
+
       - name: Upload packaged wallpaper artifact
         uses: actions/upload-artifact@v4
         with:

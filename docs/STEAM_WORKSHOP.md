@@ -64,6 +64,7 @@ Arcade
 
 - Run `npm.cmd run verify:release`.
 - Confirm `dist/pond-patrol-wallpaper.zip` was generated.
+- Confirm `npm.cmd run verify:package` passes if you manually replace or move the ZIP.
 - In Wallpaper Engine, create or import a web wallpaper from `build/index.html`.
 - Confirm Wallpaper Engine reads `build/project.json`.
 - Confirm the preview image is `build/preview.jpg`.

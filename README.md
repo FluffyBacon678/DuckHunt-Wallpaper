@@ -80,6 +80,7 @@ Or run the checks individually:
 
 ```powershell
 npm.cmd run verify:bundle
+npm.cmd run verify:package
 npm.cmd run verify:wallpaper
 ```
 
@@ -92,6 +93,7 @@ npm.cmd run verify:wallpaper:matrix
 The verifier saves screenshots to `artifacts/` and checks:
 
 - build bundle metadata, required files, copied assets, local references, and publishing-risk strings
+- packaged ZIP root layout, expected files, and file sizes
 - menu loads
 - canvas scales correctly
 - START click enters the running game state
